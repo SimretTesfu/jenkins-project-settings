@@ -7,7 +7,7 @@ pipeline {
                         nodejs('node-23.4')
                         {
                               sh 'yarn install'
-                              sh 'yarn build'
+                            
                         }
                   }
             }
