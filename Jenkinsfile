@@ -7,7 +7,7 @@ pipeline {
       stages {
             stage("run frontend") {
                   steps {
-                        echo 'excuting yard commmand'
+                        echo 'excuting yard'
                         nodejs('node-23.4')
                         {
                               sh 'yarn install'
