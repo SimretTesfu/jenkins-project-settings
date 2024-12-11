@@ -1,25 +1,29 @@
 pipeline {
-      agent any
-      stages {
-            stage('Init') {
-                  steps {
-                        echo 'We are Starting the Init steps'
-                  }
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
             }
-            stage('Build') {
-                  steps {
-                        echo 'Building Sample Maven Project'
-                  }
+        }
+        stage('Build') {
+            steps {
+                sh './gradlew build'
             }
-            stage('Deploy') {
-                  steps {
-                        echo "Deploying in Staging Area"
-                  }
+        }
+        stage('Test') {
+            steps {
+                sh './gradlew test'
             }
-            stage('Deploy Production') {
-                  steps {
-                        echo "Deploying in Production Area"
-                  }
-            }
-      }
+        }
+    }
+
+    post {
+        always {
+            archiveArtifacts artifacts: '**/build/libs/*.jar', allowEmptyArchive: true
+            junit '**/build/test-results/test/*.xml'
+        }
+    }
 }
+
