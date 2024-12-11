@@ -3,7 +3,7 @@
 # Gradle startup script for UNIX-based systems
 
 if [ -z "$JAVA_HOME" ]; then
-    echo "JAVA_HOME is not set; please configure it."
+    echo "JAVA_HOME is not set; please configure it ok."
     exit 1
 fi
 
