@@ -21,7 +21,7 @@ pipeline {
                        
                         
                               sh 'chmod +x gradlew'
-                              sh './gradlew -v'
+                              sh './gradlew build' 
                               
                         
                   }
