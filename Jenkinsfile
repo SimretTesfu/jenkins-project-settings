@@ -1,29 +1,17 @@
 pipeline {
-    agent any
-
-    stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
+      agent any
+      stages {
+            stage("run frontend") {
+                  steps {
+                        echo 'We are Starting the Init steps'
+                  }
             }
-        }
-        stage('Build') {
-            steps {
-                echo './gradlew build'
+            stage("run backend") {
+                  steps {
+                        echo 'IT is Building Sample Maven Project'
+                  }
             }
-        }
-        stage('Test') {
-            steps {
-                echo './gradlew test'
-            }
-        }
-    }
-
-    post {
-        always {
-            archiveArtifacts artifacts: '**/build/libs/*.jar', allowEmptyArchive: true
-            junit '**/build/test-results/test/*.xml'
-        }
-    }
+          
+      }
 }
 
